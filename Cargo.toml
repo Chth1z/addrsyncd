@@ -1,0 +1,24 @@
+[package]
+name = "addrsyncd"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.93"
+description = "Linux/Android address-to-rule sync daemon (optimized for Android arm64)"
+license = "UNLICENSED"
+readme = "README.md"
+documentation = "https://docs.rs/addrsyncd"
+
+[dependencies]
+libc = "0.2"
+rustc-hash = "2.1"
+
+[dev-dependencies]
+proptest = "1.9"
+tempfile = "3.15"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
