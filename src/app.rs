@@ -38,6 +38,7 @@ fn run_cli(cli: Cli) -> Result<(), AppError> {
             };
             service::cleanup_once(opts, logger, source)
         }
+        Command::Pbr { request } => crate::netlink::pbr::run_request(request),
         Command::Status => crate::control::print_status(&paths.config, &paths.work_dir),
     }
 }

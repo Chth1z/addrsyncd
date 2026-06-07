@@ -22,6 +22,7 @@ fn cli_help_contains_run_and_cleanup_modes() {
     let stdout = String::from_utf8_lossy(&output.stdout);
     assert!(stdout.contains("run"));
     assert!(stdout.contains("cleanup"));
+    assert!(stdout.contains("pbr"));
     assert!(stdout.contains("-c"));
     assert!(stdout.contains("-d"));
 }
@@ -49,6 +50,21 @@ fn cleanup_help_contains_mode_values() {
     let stdout = String::from_utf8_lossy(&output.stdout);
     assert!(stdout.contains("tracked"));
     assert!(stdout.contains("dump"));
+}
+
+#[test]
+fn pbr_help_contains_mark_mask_options() {
+    let output = Command::new(bin())
+        .arg("pbr")
+        .arg("--help")
+        .output()
+        .expect("spawn");
+    assert!(output.status.success());
+    let stdout = String::from_utf8_lossy(&output.stdout);
+    assert!(stdout.contains("--mark"));
+    assert!(stdout.contains("--mask"));
+    assert!(stdout.contains("--table"));
+    assert!(stdout.contains("--pref"));
 }
 
 #[test]
